@@ -6,22 +6,22 @@ public enum StartSide {
 
         @Override
         int[] firstStep(int[][] array, int left, int right, int bottom) {
-            return getRow(array, left);
+            return ArrayHandler.getRow(array, left);
         }
 
         @Override
         int[] secondStep(int[][] array, int left, int right, int bottom) {
-            return getColumn(array, right);
+            return ArrayHandler.getColumn(array, right);
         }
 
         @Override
         int[] thirdStep(int[][] array, int left, int right, int bottom) {
-            return reverse(getRow(array, bottom));
+            return ArrayHandler.reverse(ArrayHandler.getRow(array, bottom));
         }
 
         @Override
         int[] fourthStep(int[][] array, int left, int right, int bottom) {
-            return reverse(getColumn(array, left));
+            return ArrayHandler.reverse(ArrayHandler.getColumn(array, left));
         }
 
         @Override
@@ -47,22 +47,22 @@ public enum StartSide {
 
         @Override
         int[] firstStep(int[][] array, int left, int right, int bottom) {
-            return getColumn(array, right);
+            return ArrayHandler.getColumn(array, right);
         }
 
         @Override
         int[] secondStep(int[][] array, int left, int right, int bottom) {
-            return reverse(getRow(array, bottom));
+            return ArrayHandler.reverse(ArrayHandler.getRow(array, bottom));
         }
 
         @Override
         int[] thirdStep(int[][] array, int left, int right, int bottom) {
-            return reverse(getColumn(array, left));
+            return ArrayHandler.reverse(ArrayHandler.getColumn(array, left));
         }
 
         @Override
         int[] fourthStep(int[][] array, int left, int right, int bottom) {
-            return getRow(array, left);
+            return ArrayHandler.getRow(array, left);
         }
 
         @Override
@@ -88,22 +88,22 @@ public enum StartSide {
 
         @Override
         int[] firstStep(int[][] array, int left, int right, int bottom) {
-            return reverse(getRow(array, bottom));
+            return ArrayHandler.reverse(ArrayHandler.getRow(array, bottom));
         }
 
         @Override
         int[] secondStep(int[][] array, int left, int right, int bottom) {
-            return reverse(getColumn(array, left));
+            return ArrayHandler.reverse(ArrayHandler.getColumn(array, left));
         }
 
         @Override
         int[] thirdStep(int[][] array, int left, int right, int bottom) {
-            return getRow(array, left);
+            return ArrayHandler.getRow(array, left);
         }
 
         @Override
         int[] fourthStep(int[][] array, int left, int right, int bottom) {
-            return getColumn(array, right);
+            return ArrayHandler.getColumn(array, right);
         }
 
         @Override
@@ -129,22 +129,22 @@ public enum StartSide {
 
         @Override
         int[] firstStep(int[][] array, int left, int right, int bottom) {
-            return reverse(getColumn(array, left));
+            return ArrayHandler.reverse(ArrayHandler.getColumn(array, left));
         }
 
         @Override
         int[] secondStep(int[][] array, int left, int right, int bottom) {
-            return getRow(array, left);
+            return ArrayHandler.getRow(array, left);
         }
 
         @Override
         int[] thirdStep(int[][] array, int left, int right, int bottom) {
-            return getColumn(array, right);
+            return ArrayHandler.getColumn(array, right);
         }
 
         @Override
         int[] fourthStep(int[][] array, int left, int right, int bottom) {
-            return reverse(getRow(array, bottom));
+            return ArrayHandler.reverse(ArrayHandler.getRow(array, bottom));
         }
 
         @Override
@@ -177,27 +177,5 @@ public enum StartSide {
     abstract int choiceSecoundParam(int width, int height);
     abstract int choiceThirdParam(int width, int height);
     abstract int choiceFourthParam(int width, int height);
-    
-    private static int[] getColumn(int[][] arr, int number){
-        int[] result = new int[arr.length];
-        for (int i = 0; i < arr.length; i++) {
-            result[i] = arr[i][number];
-        }        
-        return result;
-    }
-    
-    private static int[] getRow(int[][] arr, int number){
-        return arr[number];
-    }
-    
-    private static int[] reverse(int[] arr){
-        int j = arr.length;
-        int[] tmp = new int[j];        
-        
-        for (int i = 0; i < arr.length; i++) {
-            tmp[i] = arr[--j];
-        }
-        return tmp;
-    }
     
 }
