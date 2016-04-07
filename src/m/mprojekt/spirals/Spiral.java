@@ -14,59 +14,44 @@ public class Spiral {
     }
 
     public int[] unroll(int[][] array){
-        ArrayHandler arrayHandler = new ArrayHandler(array.length, array[0].length);
-        
-        int width = array[0].length;
-        int height = array.length;
-        int start = 0;
-        
-        int left = 0;
-        int right = array[0].length - 1;
-        int bottom = array.length - 1;
-        
+        ArrayHandler arrayHandler = new ArrayHandler(array[0].length, array.length);
+        SpiralStan stan = new SpiralStan(array[0].length, array.length);
+                
         array = preparationArray(array);
         
         while(true){
-            int[] a = startSide.firstStep(array, left, right, bottom);
-            int sizeA = startSide.choiceFirstParam(width, height);
+            int[] a = startSide.firstStep(array, stan.getLeft(), stan.getRight(), stan.getBottom());
+            int sizeA = startSide.choiceFirstParam(stan.getWidth(), stan.getHeight());
             if(sizeA <= 0 ) break;
             
-            arrayHandler.appendPartArray(a, start, sizeA);
-            
-            width--;
-            height--;
-            start++;
+            arrayHandler.appendPartArray(a, stan.getStart(), sizeA);
+            stan.updateAfterFirstStep();
             
             //=============
             
-            int[] b = startSide.secondStep(array, left, right, bottom);
-            int sizeB = startSide.choiceSecoundParam(width, height);
+            int[] b = startSide.secondStep(array, stan.getLeft(), stan.getRight(), stan.getBottom());
+            int sizeB = startSide.choiceSecoundParam(stan.getWidth(), stan.getHeight());
             if(sizeB <= 0 ) break;
             
-            arrayHandler.appendPartArray(b, start, sizeB);
+            arrayHandler.appendPartArray(b, stan.getStart(), sizeB);
             
             //=============
             
-            int[] c = startSide.thirdStep(array, left, right, bottom);
-            int sizeC = startSide.choiceThirdParam(width, height);
+            int[] c = startSide.thirdStep(array, stan.getLeft(), stan.getRight(), stan.getBottom());
+            int sizeC = startSide.choiceThirdParam(stan.getWidth(), stan.getHeight());
             if(sizeC <= 0 ) break;
             
-            arrayHandler.appendPartArray(c, start, sizeC);
-            
-            width--;
-            height--;
+            arrayHandler.appendPartArray(c, stan.getStart(), sizeC);
+            stan.updateAfterThirdStep();
             
             //============
             
-            int[] d = startSide.fourthStep(array, left, right, bottom);
-            int sizeD = startSide.choiceFourthParam(width, height);
+            int[] d = startSide.fourthStep(array, stan.getLeft(), stan.getRight(), stan.getBottom());
+            int sizeD = startSide.choiceFourthParam(stan.getWidth(), stan.getHeight());
             if(sizeD <= 0 ) break;
             
-            arrayHandler.appendPartArray(d, start, sizeD);
-            
-            left++;
-            right--;
-            bottom--;
+            arrayHandler.appendPartArray(d, stan.getStart(), sizeD);
+            stan.updateAfterFourthStep();
         }
         
         return arrayHandler.getResult();
