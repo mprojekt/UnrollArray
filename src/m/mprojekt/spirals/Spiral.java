@@ -20,8 +20,8 @@ public class Spiral {
         array = preparationArray(array);
         
         while(true){
-            int[] a = startSide.firstStep(array, stan.getLeft(), stan.getRight(), stan.getBottom());
-            int sizeA = startSide.choiceFirstParam(stan.getWidth(), stan.getHeight());
+            int[] a = startSide.firstStep(array, stan);
+            int sizeA = startSide.choiceFirstParam(stan);
             if(sizeA <= 0 ) break;
             
             arrayHandler.appendPartArray(a, stan.getStart(), sizeA);
@@ -29,16 +29,16 @@ public class Spiral {
             
             //=============
             
-            int[] b = startSide.secondStep(array, stan.getLeft(), stan.getRight(), stan.getBottom());
-            int sizeB = startSide.choiceSecoundParam(stan.getWidth(), stan.getHeight());
+            int[] b = startSide.secondStep(array, stan);
+            int sizeB = startSide.choiceSecoundParam(stan);
             if(sizeB <= 0 ) break;
             
             arrayHandler.appendPartArray(b, stan.getStart(), sizeB);
             
             //=============
             
-            int[] c = startSide.thirdStep(array, stan.getLeft(), stan.getRight(), stan.getBottom());
-            int sizeC = startSide.choiceThirdParam(stan.getWidth(), stan.getHeight());
+            int[] c = startSide.thirdStep(array, stan);
+            int sizeC = startSide.choiceThirdParam(stan);
             if(sizeC <= 0 ) break;
             
             arrayHandler.appendPartArray(c, stan.getStart(), sizeC);
@@ -46,8 +46,8 @@ public class Spiral {
             
             //============
             
-            int[] d = startSide.fourthStep(array, stan.getLeft(), stan.getRight(), stan.getBottom());
-            int sizeD = startSide.choiceFourthParam(stan.getWidth(), stan.getHeight());
+            int[] d = startSide.fourthStep(array, stan);
+            int sizeD = startSide.choiceFourthParam(stan);
             if(sizeD <= 0 ) break;
             
             arrayHandler.appendPartArray(d, stan.getStart(), sizeD);
