@@ -1,5 +1,7 @@
 package m.mprojekt.spirals;
 
+import m.mprojekt.spirals.util.*;
+
 
 public class Spiral {
 

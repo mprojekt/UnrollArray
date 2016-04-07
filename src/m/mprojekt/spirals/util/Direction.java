@@ -1,4 +1,4 @@
-package m.mprojekt.spirals;
+package m.mprojekt.spirals.util;
 
 
 public enum Direction {
