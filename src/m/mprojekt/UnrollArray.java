@@ -14,7 +14,7 @@ public class UnrollArray {
         }        
         ArrayHandler.printArray(array);
         
-        Spirals spiral = new Spirals();
+        Spiral spiral = new Spiral();
         int[] tmp = spiral.unroll(array);        
         ArrayHandler.printArray(tmp);
     }

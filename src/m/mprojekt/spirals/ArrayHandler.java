@@ -2,6 +2,23 @@ package m.mprojekt.spirals;
 
 
 public class ArrayHandler {
+    
+    private int[] result;
+    private int resultIndex;
+
+    public ArrayHandler(int width, int height) {
+        result = new int[width * height];
+        resultIndex = 0;
+    }
+    
+    public void appendPartArray(int[] array, int start, int size){
+        int[] tmp = ArrayHandler.cutBeetwen(array, start, size);
+        resultIndex = ArrayHandler.addArray(result, resultIndex, tmp);
+    }
+    
+    public int[] getResult(){
+        return result;
+    }
         
     public static int[] getColumn(int[][] array, int number){
         int[] result = new int[array.length];

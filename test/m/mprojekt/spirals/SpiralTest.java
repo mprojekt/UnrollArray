@@ -4,15 +4,15 @@ import org.junit.*;
 import static org.junit.Assert.*;
 
 
-public class SpiralsTest {
+public class SpiralTest {
     
-    Spirals instance;
+    Spiral instance;
     int[][] array;
     int[][] arrayHight;
     int[][] arrayWeight;
     
-    public SpiralsTest() {
-        instance = new Spirals();
+    public SpiralTest() {
+        instance = new Spiral();
     }
     
     @Before

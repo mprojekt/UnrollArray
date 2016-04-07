@@ -1,96 +1,101 @@
 package m.mprojekt.spirals;
 
 
-public class Spirals {
+public class Spiral {
 
     StartSide startSide;
     Direction direction;
     
-    public Spirals() {
+    public Spiral() {
         startSide = StartSide.Top;
         direction = Direction.Clockwise;
     }
 
     public int[] unroll(int[][] array){
-        int[] result = new int[array.length * array[0].length];
-        int resultIndex = 0;
+        ArrayHandler arrayHandler = new ArrayHandler(array.length, array[0].length);
+        
         int width = array[0].length;
         int height = array.length;
         int start = 0;
+        
         int left = 0;
         int right = array[0].length - 1;
         int bottom = array.length - 1;
         
-        array = preparationArray(array);        
+        array = preparationArray(array);
         
         while(true){
             int[] a = startSide.firstStep(array, left, right, bottom);
-            int size = startSide.choiceFirstParam(width, height);
+            int sizeA = startSide.choiceFirstParam(width, height);
+            if(sizeA <= 0 ) break;
             
-            int[] ac = ArrayHandler.cutBeetwen(a, start, size);
-            if(ac.length <= 0 )
-                break;
-            resultIndex = ArrayHandler.addArray(result, resultIndex, ac);
+            arrayHandler.appendPartArray(a, start, sizeA);
             
             width--;
             height--;
             start++;
             
+            //=============
+            
             int[] b = startSide.secondStep(array, left, right, bottom);
-            int[] bc = ArrayHandler.cutBeetwen(b, start, startSide.choiceSecoundParam(width, height));
-            if(bc.length <= 0 )
-                break;
-            resultIndex = ArrayHandler.addArray(result, resultIndex, bc);
+            int sizeB = startSide.choiceSecoundParam(width, height);
+            if(sizeB <= 0 ) break;
+            
+            arrayHandler.appendPartArray(b, start, sizeB);
+            
+            //=============
             
             int[] c = startSide.thirdStep(array, left, right, bottom);
-            int[] cc = ArrayHandler.cutBeetwen(c, start, startSide.choiceThirdParam(width, height));
-            if(cc.length <= 0 )
-                break;
-            resultIndex = ArrayHandler.addArray(result, resultIndex, cc);
+            int sizeC = startSide.choiceThirdParam(width, height);
+            if(sizeC <= 0 ) break;
+            
+            arrayHandler.appendPartArray(c, start, sizeC);
             
             width--;
             height--;
             
+            //============
+            
             int[] d = startSide.fourthStep(array, left, right, bottom);
-            int[] dc = ArrayHandler.cutBeetwen(d, start, startSide.choiceFourthParam(width, height));
-            if(dc.length <= 0 )
-                break;
-            resultIndex = ArrayHandler.addArray(result, resultIndex, dc);
+            int sizeD = startSide.choiceFourthParam(width, height);
+            if(sizeD <= 0 ) break;
+            
+            arrayHandler.appendPartArray(d, start, sizeD);
             
             left++;
             right--;
             bottom--;
         }
         
-        return result;
+        return arrayHandler.getResult();
     }
     
-    public Spirals top(){
+    public Spiral top(){
         this.startSide = StartSide.Top;
         return this;
     }
     
-    public Spirals right(){
+    public Spiral right(){
         this.startSide = StartSide.Right;
         return this;
     }
     
-    public Spirals bottom(){
+    public Spiral bottom(){
         this.startSide = StartSide.Bottom;
         return this;
     }
     
-    public Spirals left(){
+    public Spiral left(){
         this.startSide = StartSide.Left;
         return this;
     }
     
-    public Spirals clockwise(){
+    public Spiral clockwise(){
         this.direction = Direction.Clockwise;
         return this;
     }
     
-    public Spirals anticlockwise(){
+    public Spiral anticlockwise(){
         this.direction = Direction.Anticlockwise;
         return this;
     }    
