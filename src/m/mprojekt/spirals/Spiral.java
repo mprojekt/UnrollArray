@@ -19,43 +19,15 @@ public class Spiral {
                 
         array = preparationArray(array);
         
-        while(true){
-            int[] a = startSide.firstStep(array, stan);
-            int sizeA = startSide.choiceFirstParam(stan);
-            if(sizeA <= 0 ) break;
-            
-            arrayHandler.appendPartArray(a, stan.getStart(), sizeA);
-            stan.updateAfterFirstStep();
-            
-            //=============
-            
-            int[] b = startSide.secondStep(array, stan);
-            int sizeB = startSide.choiceSecoundParam(stan);
-            if(sizeB <= 0 ) break;
-            
-            arrayHandler.appendPartArray(b, stan.getStart(), sizeB);
-            
-            //=============
-            
-            int[] c = startSide.thirdStep(array, stan);
-            int sizeC = startSide.choiceThirdParam(stan);
-            if(sizeC <= 0 ) break;
-            
-            arrayHandler.appendPartArray(c, stan.getStart(), sizeC);
-            stan.updateAfterThirdStep();
-            
-            //============
-            
-            int[] d = startSide.fourthStep(array, stan);
-            int sizeD = startSide.choiceFourthParam(stan);
-            if(sizeD <= 0 ) break;
-            
-            arrayHandler.appendPartArray(d, stan.getStart(), sizeD);
-            stan.updateAfterFourthStep();
+        Step actual = Step.getFirstStep(startSide);        
+        boolean isNext = true;
+        while(isNext){            
+            isNext = actual.takeStep(array, stan, arrayHandler);
+            actual = actual.nextStep();
         }
         
         return arrayHandler.getResult();
-    }
+    }    
     
     public Spiral top(){
         this.startSide = StartSide.Top;
