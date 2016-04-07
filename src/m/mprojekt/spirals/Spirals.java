@@ -21,17 +21,13 @@ public class Spirals {
         int right = array[0].length - 1;
         int bottom = array.length - 1;
         
-        if(direction == Direction.Anticlockwise){
-            if(startSide == StartSide.Top || startSide == StartSide.Bottom){
-                array = ArrayHandler.flipHorizontally(array);
-            } else if(startSide == StartSide.Left || startSide == StartSide.Right){
-                array = ArrayHandler.flipVertically(array);
-            }
-        }
+        array = preparationArray(array);        
         
         while(true){
             int[] a = startSide.firstStep(array, left, right, bottom);
-            int[] ac = ArrayHandler.cutBeetwen(a, start, startSide.choiceFirstParam(width, height));
+            int size = startSide.choiceFirstParam(width, height);
+            
+            int[] ac = ArrayHandler.cutBeetwen(a, start, size);
             if(ac.length <= 0 )
                 break;
             resultIndex = ArrayHandler.addArray(result, resultIndex, ac);
@@ -98,5 +94,16 @@ public class Spirals {
         this.direction = Direction.Anticlockwise;
         return this;
     }    
+
+    private int[][] preparationArray(int[][] array) {
+        if(direction == Direction.Anticlockwise){
+            if(startSide == StartSide.Top || startSide == StartSide.Bottom){
+                return ArrayHandler.flipHorizontally(array);
+            } else if(startSide == StartSide.Left || startSide == StartSide.Right){
+                return ArrayHandler.flipVertically(array);
+            }
+        }
+        return array;
+    }
     
 }
