@@ -13,15 +13,18 @@ public class Spiral {
         direction = Direction.Clockwise;
     }
 
-    public int[] unroll(int[][] array){
+    public int[] unroll(int[][] array) throws IllegalArgumentException{
+        if(!ArrayHandler.isRightArray(array))
+            throw new IllegalArgumentException("Not all of rows are the same length.");
+        
         ArrayHandler arrayHandler = new ArrayHandler(array[0].length, array.length);
         SpiralStan stan = new SpiralStan(array[0].length, array.length);
                 
         array = preparationArray(array);
         
-        Step actual = Step.getFirstStep(startSide);        
+        Step actual = Step.getFirstStep(startSide);
         boolean isNext = true;
-        while(isNext){            
+        while(isNext){
             isNext = actual.takeStep(array, stan, arrayHandler);
             actual = actual.nextStep();
         }

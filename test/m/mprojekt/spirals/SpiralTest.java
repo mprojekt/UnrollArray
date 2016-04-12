@@ -21,6 +21,17 @@ public class SpiralTest {
         arrayHight = generateArray(5, 3);
         arrayWeight = generateArray(3, 4);
     }
+    
+    @Test
+    public void exceptionTest() {
+        array = new int[][]{ {1, 2, 3}, {10, 11}, {20, 21, 22}};
+        try{
+            instance.unroll(array);
+            fail("Should by IllegalArgumentException");
+        } catch(IllegalArgumentException iae){
+            assertTrue(true);
+        }
+    }
 
     @Test
     public void testTop() {        
