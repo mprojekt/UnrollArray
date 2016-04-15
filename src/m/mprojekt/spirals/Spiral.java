@@ -1,35 +1,48 @@
 package m.mprojekt.spirals;
 
+import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import m.mprojekt.spirals.steps.*;
 import m.mprojekt.spirals.util.*;
 
 
 public class Spiral {
-
+    
     StartSide startSide;
     Direction direction;
+    
+    Map<String, Step> steps; 
     
     public Spiral() {
         startSide = StartSide.Top;
         direction = Direction.Clockwise;
+        
+        steps = generateSteps();
     }
-
+    
     public int[] unroll(int[][] array) throws IllegalArgumentException{
         if(!ArrayHandler.isRightArray(array))
             throw new IllegalArgumentException("Not all of rows are the same length.");
         
-        ArrayHandler arrayHandler = new ArrayHandler(array[0].length, array.length);
-        SpiralStan stan = new SpiralStan(array[0].length, array.length);
-                
         array = preparationArray(array);
         
-        Step actual = Step.getFirstStep(startSide);
-        boolean isNext = true;
-        while(isNext){
-            isNext = actual.takeStep(array, stan, arrayHandler);
-            actual = actual.nextStep();
-        }
+        ResultHandler resultHandler = new ResultHandler(array[0].length, array.length);
+        SpiralStan stan = new SpiralStan(array[0].length, array.length);
+        Step actual = steps.get(startSide.toString());
         
-        return arrayHandler.getResult();
+        while(actual.hasNext()){
+            try {
+                int[] tmp = actual.perform(array, stan);
+                resultHandler.appendPartArray(tmp);
+                actual = actual.next();
+            } catch (Exception ex) {
+//                Logger.getLogger(Spiral.class.getName()).log(Level.INFO, "End processing");
+                break;
+            }
+        }      
+        
+        return resultHandler.getResult();
     }    
     
     public Spiral top(){
@@ -72,5 +85,25 @@ public class Spiral {
         }
         return array;
     }
-    
+
+    private Map<String, Step> generateSteps() {
+        Step first = new FirstStep();
+        Step secound = new SecoundStep();
+        Step third = new ThirdStep();
+        Step fourth = new FourthStep();
+        
+        first.setNextStep(secound);
+        secound.setNextStep(third);
+        third.setNextStep(fourth);
+        fourth.setNextStep(first);
+        
+        Map<String, Step> result = new HashMap<>();
+        result.put("Top", first);
+        result.put("Right", secound);
+        result.put("Bottom", third);
+        result.put("Left", fourth);
+        
+        return result;
+    }
+
 }
