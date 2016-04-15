@@ -1,7 +1,7 @@
 package m.mprojekt.spirals.util;
 
 
-public class SpiralStan {
+public class SpiralState {
     
     private int width;
     private int height;
@@ -11,7 +11,7 @@ public class SpiralStan {
     private int right;
     private int bottom;
 
-    public SpiralStan(int width, int height) {
+    public SpiralState(int width, int height) {
         this.width = width;
         this.height = height;
         start = 0;

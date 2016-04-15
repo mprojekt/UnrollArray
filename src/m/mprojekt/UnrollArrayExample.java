@@ -4,7 +4,7 @@ import m.mprojekt.spirals.*;
 import m.mprojekt.spirals.util.*;
 
 
-public class UnrollArray {
+public class UnrollArrayExample {
 
     public static void main(String[] args) {
         int[][] array = new int[6][5];
@@ -15,8 +15,8 @@ public class UnrollArray {
         }        
         ArrayHandler.printArray(array);
         
-        Spiral spiral = new Spiral();
-        int[] tmp = spiral.unroll(array);        
+        UnrollArray spiral = new Spiral();
+        int[] tmp = spiral.bottom().unroll(array);        
         ArrayHandler.printArray(tmp);
     }
     

@@ -5,18 +5,18 @@ import m.mprojekt.spirals.util.*;
 
 public class SecoundStep extends Step{
 
-    @Override
-    public int[] getArray(int[][] array, SpiralStan stan) {
-        return ArrayHandler.getColumn(array, stan.getRight());
+    public SecoundStep(int[][] array, SpiralState state) {
+        super(array, state);
     }
 
     @Override
-    public int getParam(SpiralStan stan) {
-        return stan.getHeight();
+    public int[] getArray() {
+        return ArrayHandler.getColumn(array, state.getRight());
     }
 
     @Override
-    public void updateStan(SpiralStan stan) {        
+    public int getParam() {
+        return state.getHeight();
     }
 
 }

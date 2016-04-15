@@ -2,24 +2,7 @@ package m.mprojekt.spirals.util;
 
 
 public class ArrayHandler {
-    
-    private int[] result;
-    private int resultIndex;
-
-    public ArrayHandler(int width, int height) {
-        result = new int[width * height];
-        resultIndex = 0;
-    }
-    
-    public void appendPartArray(int[] array, int start, int size) throws IllegalArgumentException{
-        int[] tmp = ArrayHandler.cutBeetwen(array, start, size);
-        resultIndex = ArrayHandler.addArray(result, resultIndex, tmp);
-    }
-    
-    public int[] getResult(){
-        return result;
-    }
-    
+        
     public static boolean isRightArray(int[][] array){
         if(isNull(array))
             return false;

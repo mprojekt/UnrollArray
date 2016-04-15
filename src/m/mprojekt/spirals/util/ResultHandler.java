@@ -11,7 +11,7 @@ public class ResultHandler {
         resultIndex = 0;
     }
     
-    public void appendPartArray(int[] array) throws IllegalArgumentException{
+    public void appendToResult(int[] array) throws IllegalArgumentException{
         resultIndex = ArrayHandler.addArray(result, resultIndex, array);
     }
     

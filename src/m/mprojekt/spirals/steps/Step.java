@@ -1,42 +1,48 @@
 package m.mprojekt.spirals.steps;
 
 import java.util.Objects;
+import java.util.function.Consumer;
 import m.mprojekt.spirals.util.*;
 
 
 public abstract class Step {   
     
     private Step nextStep;
-    private boolean isNext;
+    private Consumer<SpiralState> changeStateConsumer;
+    protected final SpiralState state;
+    protected final int[][] array;
 
-    public Step() { 
-        isNext = true;
+    public Step(int[][] array, SpiralState state) {
+        this.state = state;
+        this.array = array;
     }
     
-    public int[] perform(int[][] array, SpiralStan stan) throws Exception{
-        int[] arr = getArray(array, stan);
-        int size = getParam(stan);
+    public int[] perform() throws Exception{
+        int[] arr = getArray();
+        int size = getParam();
         
         if(size <= 0){
             throw new Exception("end");
-        }            
+        }
         
-//        arrayHandler.appendPartArray(arr, stan.getStart(), size);
-        
-        int[] result = ArrayHandler.cutBeetwen(arr, stan.getStart(), size);
-        updateStan(stan);
+        int[] result = ArrayHandler.cutBeetwen(arr, state.getStart(), size);
+        if(changeStateConsumer != null)
+            changeStateConsumer.accept(state);
         
         return result;
     }
     
-    public abstract int[] getArray(int[][] array, SpiralStan stan);
-    public abstract int getParam(SpiralStan stan);
-    public abstract void updateStan(SpiralStan stan);
+    public abstract int[] getArray();
+    public abstract int getParam();
     
     public boolean hasNext() {
         return true;
     }
 
+    public void setChangeStateConsumer(Consumer<SpiralState> changeStateConsumer) {
+        this.changeStateConsumer = changeStateConsumer;
+    }
+    
     public Step next() {
         return nextStep;
     }

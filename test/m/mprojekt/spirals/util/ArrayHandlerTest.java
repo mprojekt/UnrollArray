@@ -21,40 +21,6 @@ public class ArrayHandlerTest {
     }
 
     @Test
-    public void testAppendPartArray() {
-        ArrayHandler instance = new ArrayHandler(2, 2); 
-        instance.appendPartArray(array, 1, 2);  
-        assertArrayEquals(new int[]{2, 3, 0, 0}, instance.getResult());
-        
-         try{
-            instance.appendPartArray(array, -2, 3);
-            fail("Should be IllegalArgumentException");
-        } catch(IllegalArgumentException iae){
-            assertTrue(true);
-        }
-        
-        try{
-            instance.appendPartArray(array, 53, 2);
-            fail("Should be IllegalArgumentException");
-        } catch(IllegalArgumentException iae){
-            assertTrue(true);
-        }
-        
-        try{
-            instance.appendPartArray(array, 0, -1);
-            fail("Should be IllegalArgumentException");
-        } catch(IllegalArgumentException iae){
-            assertTrue(true);
-        }
-    }
-
-    @Test
-    public void testGetResult() {
-        ArrayHandler instance = new ArrayHandler(2, 2);        
-        assertArrayEquals(new int[]{0, 0, 0, 0}, instance.getResult());
-    }
-
-    @Test
     public void testIsRightArray() {        
         assertTrue(ArrayHandler.isRightArray(array2D));
         assertTrue(ArrayHandler.isRightArray(array2DHight));
