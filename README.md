@@ -3,7 +3,7 @@
 
 ### 1. O co chodzi?
 
-Zaprezentowana biblioteka zajmuje się "rozwijaniem" tablic prostokątnych spiralnie, zaczynając z jednej ze stron i zagłębiając się do  tak jak to przedstawia poniższy rysunek:
+Zaprezentowana biblioteka zajmuje się "rozwijaniem" tablic prostokątnych spiralnie, zaczynając z jednej ze stron i zagłębiając się do środka, tak jak to przedstawia poniższy rysunek:
 
 ![array](http://mpietroszek.pl/image/array.jpg)
 
@@ -11,10 +11,10 @@ Wynikiem działania dla powyższej tablicy będzie `[0, 1, 2, 3, 7, 11, 15, 14, 
 
 ### 2. Możliwości
 
-*  Biblioteka działa dla tablic liczb całkowitych (int[][]).
+*  Biblioteka działa dla tablic liczb całkowitych (`int[][]`).
 *  Tablica wejściowa musi być prostokątna tzn. wszystkie wiersze są tej samej długości.
 *  Tablica może być rozwijana w kierunku ruchu wskazówek zegara (jak na rysunku) lub przeciwnie.
-*  Wynikiem jest jednowymiarowa tablica liczb całkowitych (int[]) zawierająca wszystkie liczby z tablicy wejściowej.
+*  Wynikiem jest jednowymiarowa tablica liczb całkowitych (`int[]`) zawierająca wszystkie liczby z tablicy wejściowej.
 	
 ### 3. Użycie
 
